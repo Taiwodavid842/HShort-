@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edifice International Network - Professional Event Pass Generator</title>
+    <title>Edifice International Network - Professional Event Pass</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -89,6 +89,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            border-radius: 50%;
         }
         
         .logo-text h1 {
@@ -111,7 +112,7 @@
             color: #cbd5e1;
         }
         
-        /* Hero Section - Enhanced */
+        /* Hero Section */
         .hero {
             background: linear-gradient(135deg, rgba(26, 31, 54, 0.95), rgba(26, 31, 54, 0.92)), 
                         url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80') center/cover;
@@ -354,27 +355,57 @@
             border-radius: 18%;
         }
         
-        #userNames-display {
-            position: absolute;
-            bottom: -40px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
+        /* Enhanced Name Display Below Image */
+        .name-display-container {
             text-align: center;
-            padding: 8px;
-            background: rgba(0, 0, 0, 0.7);
-            border-radius: 5px;
-            font-family: 'Montserrat', sans-serif;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            margin-top: 25px;
+            padding: 15px 20px;
+            background: linear-gradient(135deg, var(--primary), #2c3150);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            animation: fadeIn 0.5s ease-out;
+            border: 2px solid var(--gold);
+            position: relative;
+            display: none;
         }
         
-        #userNames-display p {
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .name-display-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent 0%, rgba(255, 215, 0, 0.1) 100%);
+            border-radius: 10px;
+            z-index: 0;
+        }
+        
+        .name-title {
+            color: #fff;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 5px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        #userNames-display {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
             color: var(--gold);
-            font-size: 16px;
-            font-weight: bold;
-            margin: 0;
             letter-spacing: 0.5px;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+            padding: 10px 0;
+            position: relative;
+            z-index: 1;
         }
         
         .form-group {
@@ -526,7 +557,7 @@
             color: #4a4a4a;
         }
         
-        /* Comments Section - Enhanced */
+        /* Comments Section */
         .comments-section {
             background: white;
             border-radius: 16px;
@@ -671,7 +702,7 @@
             line-height: 1.6;
         }
         
-        /* Footer - Enhanced */
+        /* Footer */
         footer {
             background: var(--primary);
             color: white;
@@ -810,6 +841,10 @@
                 flex-direction: column;
                 gap: 20px;
             }
+            
+            #userNames-display {
+                font-size: 1.3rem;
+            }
         }
         
         /* Confetti Effect */
@@ -842,8 +877,7 @@
             <div class="header-content">
                 <div class="logo-container">
                     <div class="logo floating">
-                        <!-- Actual logo image -->
-                        <img src="logo.jpg">
+                        <img src="logo.jpg" alt="Edifice Logo">
                     </div>
                     <div class="logo-text">
                         <h1>EDIFICE INT'L NETWORK</h1>
@@ -855,7 +889,7 @@
         </div>
     </header>
 
-    <!-- Hero Section - Enhanced -->
+    <!-- Hero Section -->
     <section class="hero">
         <div class="container">
             <h2>GLOBAL LEADERS SUMMIT 2025</h2>
@@ -918,7 +952,7 @@
     <!-- Main Content -->
     <div class="container">
         <div class="main-content">
-            <!-- Flyer Generator Section - Enhanced -->
+            <!-- Flyer Generator Section -->
             <div class="flyer-section">
                 <h2 class="section-title">Create Your Digital Event Pass</h2>
                 
@@ -936,11 +970,16 @@
                 
                 <div class="flyer-container">
                     <div id="board">
-                        <img id="flyer-download" src="board.jpg" alt="Event Flyer">
+                        <img id="flyer-download" src="board.jpg">
                         <div id="ina">
                             <img id="displayImage" src="" alt="Your Photo">
-                            <div id="userNames-display"></div>
                         </div>
+                    </div>
+                    
+                    <!-- Name Display Container Below Image -->
+                    <div class="name-display-container" id="name-display-container">
+                        <div class="name-title">Official Attendee</div>
+                        <div id="userNames-display"></div>
                     </div>
                 </div>
                 
@@ -1002,7 +1041,7 @@
                 </div>
             </div>
             
-            <!-- Comments Section - Enhanced -->
+            <!-- Comments Section -->
             <div class="comments-section">
                 <h2 class="section-title">What Attendees Are Saying</h2>
                 
@@ -1025,7 +1064,7 @@
         </div>
     </div>
 
-    <!-- Footer - Enhanced -->
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -1081,7 +1120,7 @@
         }
         updateCounters();
         
-        // Image upload functionality
+        // Image upload functionality with quality improvement
         document.getElementById('imageInput').addEventListener('change', function(event) {
             const file = event.target.files[0];
             if (file) {
@@ -1089,7 +1128,27 @@
                 reader.onload = function(e) {
                     const img = document.getElementById('displayImage');
                     img.style.display = 'block';
-                    img.src = e.target.result;
+                    
+                    // Create a new image to handle proper scaling
+                    const tempImg = new Image();
+                    tempImg.src = e.target.result;
+                    tempImg.onload = function() {
+                        // Create canvas to resize and improve quality
+                        const canvas = document.createElement('canvas');
+                        const ctx = canvas.getContext('2d');
+                        
+                        // Set canvas dimensions to match the #ina container
+                        canvas.width = 200; // Higher resolution for quality
+                        canvas.height = 200;
+                        
+                        // Draw image with high quality
+                        ctx.imageSmoothingEnabled = true;
+                        ctx.imageSmoothingQuality = 'high';
+                        ctx.drawImage(tempImg, 0, 0, canvas.width, canvas.height);
+                        
+                        // Set the resized image
+                        img.src = canvas.toDataURL('image/jpeg', 0.9);
+                    };
                     
                     // Add animation to photo frame
                     document.getElementById('ina').classList.add('pulse');
@@ -1117,11 +1176,11 @@
             
             // Update display
             const userNamesDisplay = document.getElementById('userNames-display');
-            userNamesDisplay.innerHTML = '';
+            userNamesDisplay.textContent = fullName;
             
-            const nameElement = document.createElement('p');
-            nameElement.textContent = fullName;
-            userNamesDisplay.appendChild(nameElement);
+            // Show name container
+            const nameContainer = document.getElementById('name-display-container');
+            nameContainer.style.display = 'block';
             
             // Create confetti effect
             createConfetti();
@@ -1168,9 +1227,10 @@
             }
         }
         
-        // Download as PNG
+        // Download as PNG with improved quality
         document.getElementById('dl-png').addEventListener('click', function() {
             const element = document.getElementById('board');
+            const nameContainer = document.getElementById('name-display-container');
             
             // Show a confirmation if user hasn't added their name
             if (userNames.length === 0) {
@@ -1185,11 +1245,32 @@
                 this.classList.remove('pulse');
             }, 2000);
             
-            html2canvas(element).then(canvas => {
+            // Create a container for both elements
+            const container = document.createElement('div');
+            container.appendChild(element.cloneNode(true));
+            
+            // Only include name container if name exists
+            if (userNames.length > 0) {
+                container.appendChild(nameContainer.cloneNode(true));
+            }
+            
+            container.style.position = 'absolute';
+            container.style.left = '-9999px';
+            document.body.appendChild(container);
+            
+            // Use html2canvas with quality settings
+            html2canvas(container, {
+                scale: 2, // Higher scale for better quality
+                useCORS: true,
+                allowTaint: true,
+                logging: false,
+                backgroundColor: null
+            }).then(canvas => {
                 const link = document.createElement('a');
                 link.download = `edifice-event-pass-${userNames[0] || 'guest'}.png`;
-                link.href = canvas.toDataURL('image/png');
+                link.href = canvas.toDataURL('image/png', 1.0); // Highest quality
                 link.click();
+                document.body.removeChild(container);
             });
         });
         
